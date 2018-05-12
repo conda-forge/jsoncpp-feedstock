@@ -12,7 +12,7 @@ cmake ^
   -DCMAKE_BUILD_TYPE="%CMAKE_CONFIG%" ^
   -DBUILD_STATIC_LIBS=OFF ^
   -DBUILD_SHARED_LIBS=ON ^
-  -DPYTHON_EXECUTABLE="%PYTHON%" ^
+  -DPYTHON_EXECUTABLE="%BUILD_PREFIX%\python.exe" ^
   ..
 if errorlevel 1 exit 1
 
