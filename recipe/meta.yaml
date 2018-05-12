@@ -11,23 +11,16 @@ source:
 
 build:
   number: 0
-  skip: true  # [(win and py36) or (unix and not py27)]
-  features:
-    - vc9  # [win and py27]
-    - vc14  # [win and py>=35]
 
 requirements:
   build:
-    - toolchain
+    - {{ compiler("cxx") }}
     - cmake
     - pkg-config  # [unix]
     - python
-    - msinttypes  # [win and py27]
+    - msinttypes  # [win and vc==9]
 
 test:
-  requires:
-    - python {{ environ['PY_VER'] + '*' }}  # [win]
-
   commands:
     # Verify headers are present.
     - test -f "${PREFIX}/include/json/json.h"      # [unix]
