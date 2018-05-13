@@ -18,6 +18,7 @@ requirements:
     - cmake
     - pkg-config  # [unix]
     - python
+  host:
     - msinttypes  # [win and vc==9]
 
 test:
