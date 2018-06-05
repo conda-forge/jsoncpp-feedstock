@@ -24,16 +24,16 @@ requirements:
 test:
   commands:
     # Verify headers are present.
-    - test -f "${PREFIX}/include/json/json.h"      # [unix]
-    - if not exist %LIBRARY_INC%\\json\\json.h exit 1  # [win]
+    - test -f "${PREFIX}/include/json/json.h"                       # [unix]
+    - if not exist %PREFIX%\\Library\\include\\json\\json.h exit 1  # [win]
 
     # Verify pkg-config file is present.
     - test -f "${PREFIX}/lib/pkgconfig/jsoncpp.pc"  # [unix]
 
     # Verify libraries are present.
-    - test -f "${PREFIX}/lib/libjsoncpp.a"          # [unix]
+    - test -f "${PREFIX}/lib/libjsoncpp.a"                                             # [unix]
     - python -c "import ctypes; ctypes.cdll[r'${PREFIX}/lib/libjsoncpp${SHLIB_EXT}']"  # [unix]
-    - if not exist %LIBRARY_LIB%\\jsoncpp.lib exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\jsoncpp.lib exit 1                          # [win]
 
 about:
   home: https://github.com/open-source-parsers/jsoncpp
