@@ -27,6 +27,7 @@ requirements:
     - python
   host:
     - msinttypes  # [win and vc==9]
+  run:
 
 test:
   commands:
