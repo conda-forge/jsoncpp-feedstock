@@ -1,4 +1,4 @@
-{% set version = "1.8.1" %}
+{% set version = "1.8.4" %}
 
 package:
   name: jsoncpp
@@ -7,10 +7,17 @@ package:
 source:
   fn: jsoncpp-{{ version }}.tar.gz
   url: https://github.com/open-source-parsers/jsoncpp/archive/{{ version }}.tar.gz
-  sha256: 858db2faf348f89fdf1062bd3e79256772e897e7f17df73e0624edf004f2f9ac
+  sha256: c49deac9e0933bcb7044f08516861a2d560988540b23de2ac1ad443b219afdb6
+  patches:
+    ###################################################################
+    #  Include upstreamed patch for VS 2008 support.                  #
+    #                                                                 #
+    #  xref: https://github.com/open-source-parsers/jsoncpp/pull/733  #
+    ###################################################################
+    - PR_733.patch
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -20,20 +27,21 @@ requirements:
     - python
   host:
     - msinttypes  # [win and vc==9]
+  run:
 
 test:
   commands:
     # Verify headers are present.
-    - test -f "${PREFIX}/include/json/json.h"      # [unix]
-    - if not exist %LIBRARY_INC%\\json\\json.h exit 1  # [win]
+    - test -f "${PREFIX}/include/json/json.h"                       # [unix]
+    - if not exist %PREFIX%\\Library\\include\\json\\json.h exit 1  # [win]
 
     # Verify pkg-config file is present.
     - test -f "${PREFIX}/lib/pkgconfig/jsoncpp.pc"  # [unix]
 
     # Verify libraries are present.
-    - test -f "${PREFIX}/lib/libjsoncpp.a"          # [unix]
+    - test -f "${PREFIX}/lib/libjsoncpp_static.a"                                      # [unix]
     - python -c "import ctypes; ctypes.cdll[r'${PREFIX}/lib/libjsoncpp${SHLIB_EXT}']"  # [unix]
-    - if not exist %LIBRARY_LIB%\\jsoncpp.lib exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\jsoncpp.lib exit 1                          # [win]
 
 about:
   home: https://github.com/open-source-parsers/jsoncpp

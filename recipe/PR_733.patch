@@ -1,0 +1,53 @@
+From f4850b79f49176df605c0fee7815cd5c6ba344dd Mon Sep 17 00:00:00 2001
+From: drgler <daniel.kruegler@gmail.com>
+Date: Sat, 13 Jan 2018 15:28:19 +0100
+Subject: [PATCH] Issue #731: Provide new JSONCPP_OP_EXPLICIT macro to restore
+ VS 2012 support after recent introduction of explicit conversion function in
+ JSON::Value.
+
+---
+ include/json/config.h | 8 ++++++++
+ include/json/value.h  | 2 +-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+diff --git include/json/config.h include/json/config.h
+index d6bad30a..9410449e 100644
+--- include/json/config.h
++++ include/json/config.h
+@@ -84,15 +84,23 @@
+ #if __cplusplus >= 201103L
+ # define JSONCPP_OVERRIDE override
+ # define JSONCPP_NOEXCEPT noexcept
++# define JSONCPP_OP_EXPLICIT explicit
+ #elif defined(_MSC_VER) && _MSC_VER > 1600 && _MSC_VER < 1900
+ # define JSONCPP_OVERRIDE override
+ # define JSONCPP_NOEXCEPT throw()
++# if _MSC_VER >= 1800 // MSVC 2013
++#   define JSONCPP_OP_EXPLICIT explicit
++# else
++#   define JSONCPP_OP_EXPLICIT
++# endif
+ #elif defined(_MSC_VER) && _MSC_VER >= 1900
+ # define JSONCPP_OVERRIDE override
+ # define JSONCPP_NOEXCEPT noexcept
++# define JSONCPP_OP_EXPLICIT explicit
+ #else
+ # define JSONCPP_OVERRIDE
+ # define JSONCPP_NOEXCEPT throw()
++# define JSONCPP_OP_EXPLICIT
+ #endif
+ 
+ #ifndef JSON_HAS_RVALUE_REFERENCES
+diff --git include/json/value.h include/json/value.h
+index d1bf8ffc..02f34160 100644
+--- include/json/value.h
++++ include/json/value.h
+@@ -408,7 +408,7 @@ Json::Value obj_value(Json::objectValue); // {}
+   bool empty() const;
+ 
+   /// Return !isNull()
+-  explicit operator bool() const;
++  JSONCPP_OP_EXPLICIT operator bool() const;
+ 
+   /// Remove all object members and array elements.
+   /// \pre type() is arrayValue, objectValue, or nullValue
