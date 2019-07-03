@@ -50,13 +50,6 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>win_cxx_compilervs2008vc9</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=486&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/jsoncpp-feedstock?branchName=master&jobName=win&configuration=win_cxx_compilervs2008vc9" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>win_cxx_compilervs2015vc14</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=486&branchName=master">
