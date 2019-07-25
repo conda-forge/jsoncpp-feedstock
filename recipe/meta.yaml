@@ -8,13 +8,6 @@ source:
   fn: jsoncpp-{{ version }}.tar.gz
   url: https://github.com/open-source-parsers/jsoncpp/archive/{{ version }}.tar.gz
   sha256: c7b40f5605dd972108f503f031b20186f5e5bca2b65cd4b8bd6c3e4ba8126697
-  patches:
-    ###################################################################
-    #  Include upstreamed patch for VS 2008 support.                  #
-    #                                                                 #
-    #  xref: https://github.com/open-source-parsers/jsoncpp/pull/733  #
-    ###################################################################
-    - PR_733.patch
 
 build:
   number: 0
@@ -22,7 +15,7 @@ build:
 requirements:
   build:
     - {{ compiler("cxx") }}
-    - cmake
+    - cmake-binary
     - pkg-config  # [unix]
     - python
   host:
