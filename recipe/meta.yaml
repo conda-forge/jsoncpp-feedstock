@@ -23,11 +23,11 @@ requirements:
   build:
     - {{ compiler("cxx") }}
     - cmake
+    - make        # [unix]
     - pkg-config  # [unix]
     - python
   host:
     - msinttypes  # [win and vc==9]
-  run:
 
 test:
   commands:
