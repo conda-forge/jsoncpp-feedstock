@@ -15,18 +15,22 @@ else
     export LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
 fi
 
-mkdir build
-cd build
-cmake \
-  -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
-  -DCMAKE_INSTALL_LIBDIR="${PREFIX}/lib" \
-  -DCMAKE_PREFIX_PATH="${PREFIX}" \
-  -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-  -DBUILD_STATIC_LIBS=1 \
-  -DBUILD_SHARED_LIBS=1 \
-  -DPYTHON_EXECUTABLE="${BUILD_PREFIX}/bin/python" \
-  ..
+for libtype in shared static
+do
+    mkdir build_${libtype}
+    cd build_${libtype}
+    cmake \
+      -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
+      -DCMAKE_INSTALL_LIBDIR="${PREFIX}/lib" \
+      -DCMAKE_PREFIX_PATH="${PREFIX}" \
+      -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+      -DBUILD_STATIC_LIBS=[[ "${libtype}" == "static" ]] && 1 || 0 \
+      -DBUILD_SHARED_LIBS=[[ "${libtype}" == "shared" ]] && 1 || 0 \
+      -DPYTHON_EXECUTABLE="${BUILD_PREFIX}/bin/python" \
+      ..
 
-make -j${CPU_COUNT}
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make jsoncpp_check
-make install
+    make -j${CPU_COUNT}
+    eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make jsoncpp_check
+    make install
+    cd ..
+done
