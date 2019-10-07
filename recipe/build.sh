@@ -19,13 +19,15 @@ for libtype in shared static
 do
     mkdir build_${libtype}
     cd build_${libtype}
+    BUILD_STATIC_LIBS=[[ "${libtype}" == "static" ]] && 1 || 0
+    BUILD_SHARED_LIBS=[[ "${libtype}" == "shared" ]] && 1 || 0
     cmake \
       -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
       -DCMAKE_INSTALL_LIBDIR="${PREFIX}/lib" \
       -DCMAKE_PREFIX_PATH="${PREFIX}" \
       -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-      -DBUILD_STATIC_LIBS=[[ "${libtype}" == "static" ]] && 1 || 0 \
-      -DBUILD_SHARED_LIBS=[[ "${libtype}" == "shared" ]] && 1 || 0 \
+      -DBUILD_STATIC_LIBS="${BUILD_STATIC_LIBS}" \
+      -DBUILD_SHARED_LIBS="${BUILD_SHARED_LIBS}" \
       -DPYTHON_EXECUTABLE="${BUILD_PREFIX}/bin/python" \
       ..
 
