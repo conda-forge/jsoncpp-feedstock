@@ -17,10 +17,10 @@ requirements:
   build:
     - {{ compiler("cxx") }}
     - cmake
+    - make        # [unix]
     - pkg-config  # [unix]
     - python
   host:
-  run:
 
 test:
   commands:
