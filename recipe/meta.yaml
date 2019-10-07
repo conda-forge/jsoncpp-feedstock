@@ -20,7 +20,7 @@ requirements:
     - make        # [unix]
     - pkg-config  # [unix]
     - python
-  host:
+  host: []
 
 test:
   commands:
