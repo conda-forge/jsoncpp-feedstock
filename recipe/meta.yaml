@@ -1,23 +1,15 @@
-{% set version = "1.8.4" %}
+{% set version = "1.9.1" %}
 
 package:
   name: jsoncpp
   version: {{ version }}
 
 source:
-  fn: jsoncpp-{{ version }}.tar.gz
   url: https://github.com/open-source-parsers/jsoncpp/archive/{{ version }}.tar.gz
-  sha256: c49deac9e0933bcb7044f08516861a2d560988540b23de2ac1ad443b219afdb6
-  patches:
-    ###################################################################
-    #  Include upstreamed patch for VS 2008 support.                  #
-    #                                                                 #
-    #  xref: https://github.com/open-source-parsers/jsoncpp/pull/733  #
-    ###################################################################
-    - PR_733.patch
+  sha256: c7b40f5605dd972108f503f031b20186f5e5bca2b65cd4b8bd6c3e4ba8126697
 
 build:
-  number: 1001
+  number: 0
 
 requirements:
   build:
@@ -39,7 +31,6 @@ test:
     - test -f "${PREFIX}/lib/pkgconfig/jsoncpp.pc"  # [unix]
 
     # Verify libraries are present.
-    - test -f "${PREFIX}/lib/libjsoncpp_static.a"                                      # [unix]
     - python -c "import ctypes; ctypes.cdll[r'${PREFIX}/lib/libjsoncpp${SHLIB_EXT}']"  # [unix]
     - if not exist %PREFIX%\\Library\\lib\\jsoncpp.lib exit 1                          # [win]
 
@@ -53,3 +44,4 @@ extra:
   recipe-maintainers:
     - jakirkham
     - stuarteberg
+    - marcelotrevisani
