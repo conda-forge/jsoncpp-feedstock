@@ -10,6 +10,7 @@ source:
 
 build:
   number: 0
+  skip: true  # [win and vc<14]
 
 requirements:
   build:
@@ -17,9 +18,8 @@ requirements:
     - cmake
     - make        # [unix]
     - pkg-config  # [unix]
-    - python
   host:
-    - msinttypes  # [win and vc==9]
+    - python
 
 test:
   commands:
@@ -31,8 +31,11 @@ test:
     - test -f "${PREFIX}/lib/pkgconfig/jsoncpp.pc"  # [unix]
 
     # Verify libraries are present.
+    - test -f "${PREFIX}/lib/libjsoncpp.a"  # [unix]
     - python -c "import ctypes; ctypes.cdll[r'${PREFIX}/lib/libjsoncpp${SHLIB_EXT}']"  # [unix]
     - if not exist %PREFIX%\\Library\\lib\\jsoncpp.lib exit 1                          # [win]
+  requires:
+    - python
 
 about:
   home: https://github.com/open-source-parsers/jsoncpp

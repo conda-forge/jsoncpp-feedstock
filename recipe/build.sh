@@ -17,15 +17,19 @@ fi
 
 mkdir build
 cd build
-cmake \
-  -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
-  -DCMAKE_INSTALL_LIBDIR="${PREFIX}/lib" \
-  -DCMAKE_PREFIX_PATH="${PREFIX}" \
-  -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-  -DBUILD_SHARED_LIBS=1 \
-  -DPYTHON_EXECUTABLE="${BUILD_PREFIX}/bin/python" \
-  ..
 
-make -j${CPU_COUNT}
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make jsoncpp_check
-make install
+for static_lib in "ON" "OFF" ; do
+  cmake \
+    -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
+    -DCMAKE_INSTALL_LIBDIR="${PREFIX}/lib" \
+    -DCMAKE_PREFIX_PATH="${PREFIX}" \
+    -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+    -DBUILD_SHARED_LIBS=${static_lib} \
+    -DPYTHON_EXECUTABLE="${PYTHON}" \
+    ..
+
+  make -j${CPU_COUNT}
+  eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make jsoncpp_check
+  make install
+done
+
