@@ -25,7 +25,7 @@ for static_lib in "ON" "OFF" ; do
     -DCMAKE_PREFIX_PATH="${PREFIX}" \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     -DBUILD_SHARED_LIBS=${static_lib} \
-    -DPYTHON_EXECUTABLE="${PYTHON}" \
+    -DPYTHON_EXECUTABLE="${BUILD_PREFIX}/bin/python" \
     ..
 
   make -j${CPU_COUNT}
