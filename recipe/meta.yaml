@@ -1,4 +1,4 @@
-{% set version = "1.8.4" %}
+{% set version = "1.9.2" %}
 
 package:
   name: jsoncpp
@@ -7,7 +7,7 @@ package:
 source:
   fn: jsoncpp-{{ version }}.tar.gz
   url: https://github.com/open-source-parsers/jsoncpp/archive/{{ version }}.tar.gz
-  sha256: c49deac9e0933bcb7044f08516861a2d560988540b23de2ac1ad443b219afdb6
+  sha256: 77a402fb577b2e0e5d0bdc1cf9c65278915cdb25171e3452c68b6da8a561f8f0
   patches:
     ###################################################################
     #  Include upstreamed patch for VS 2008 support.                  #
@@ -17,7 +17,7 @@ source:
     - PR_733.patch
 
 build:
-  number: 1002
+  number: 0
   run_exports:
     - {{ pin_subpackage('jsoncpp', max_pin='x.x') }}
 
