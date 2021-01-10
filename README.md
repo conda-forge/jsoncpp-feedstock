@@ -5,11 +5,9 @@ Home: https://github.com/open-source-parsers/jsoncpp
 
 Package license: Public Domain/MIT
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jsoncpp-feedstock/blob/master/LICENSE.txt)
 
 Summary: A C++ library for interacting with JSON.
-
-
 
 Current build status
 ====================
