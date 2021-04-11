@@ -18,7 +18,7 @@ fi
 mkdir build
 cd build
 for static_lib in "ON" "OFF" ; do
-  cmake \
+  cmake ${CMAKE_ARGS} \
     -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
     -DCMAKE_INSTALL_LIBDIR="${PREFIX}/lib" \
     -DCMAKE_PREFIX_PATH="${PREFIX}" \
@@ -28,11 +28,15 @@ for static_lib in "ON" "OFF" ; do
     ..
 
   make -j${CPU_COUNT}
-  eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make jsoncpp_check
+  if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+    eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make jsoncpp_check
+  fi
   make install
 done
 
 
 make -j${CPU_COUNT}
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make jsoncpp_check
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+  eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make jsoncpp_check
+fi
 make install
