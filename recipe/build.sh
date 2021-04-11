@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set +x
+
 # FIXME: This is a hack to make sure the environment is activated.
 # The reason this is required is due to the conda-build issue
 # mentioned below.
