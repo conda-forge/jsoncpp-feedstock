@@ -17,6 +17,8 @@ else
     export LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
 fi
 
+export VERBOSE=1
+
 mkdir build
 cd build
 for static_lib in "ON" "OFF" ; do
