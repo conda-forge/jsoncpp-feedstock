@@ -29,6 +29,7 @@ for static_lib in "ON" "OFF" ; do
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     -DBUILD_SHARED_LIBS=${static_lib} \
     -DPYTHON_EXECUTABLE="${BUILD_PREFIX}/bin/python" \
+    -DJSONCPP_WITH_POST_BUILD_UNITTEST=off \
     ..
 
   make -j${CPU_COUNT}
