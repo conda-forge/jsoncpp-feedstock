@@ -10,7 +10,7 @@ source:
   sha256: e34a628a8142643b976c7233ef381457efad79468c67cb1ae0b83a33d7493999
 
 build:
-  number: 2
+  number: 3
   run_exports:
     - {{ pin_subpackage('jsoncpp', max_pin='x.x.x') }}
 
@@ -32,7 +32,7 @@ test:
     - test -f "${PREFIX}/lib/pkgconfig/jsoncpp.pc"  # [unix]
 
     # Verify libraries are present.
-    - test -f "${PREFIX}/lib/libjsoncpp.a"                                             # [unix]
+    - test ! -f "${PREFIX}/lib/libjsoncpp.a"                                           # [unix]
     - python -c "import ctypes; ctypes.cdll[r'${PREFIX}/lib/libjsoncpp${SHLIB_EXT}']"  # [unix]
     - if not exist %PREFIX%\\Library\\lib\\jsoncpp.lib exit 1                          # [win]
 
