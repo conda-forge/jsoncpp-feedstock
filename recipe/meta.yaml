@@ -1,4 +1,4 @@
-{% set version = "1.9.4" %}
+{% set version = "1.9.5" %}
 
 package:
   name: jsoncpp
@@ -7,10 +7,10 @@ package:
 source:
   fn: jsoncpp-{{ version }}.tar.gz
   url: https://github.com/open-source-parsers/jsoncpp/archive/{{ version }}.tar.gz
-  sha256: e34a628a8142643b976c7233ef381457efad79468c67cb1ae0b83a33d7493999
+  sha256: f409856e5920c18d0c2fb85276e24ee607d2a09b5e7d5f0a371368903c275da2
 
 build:
-  number: 3
+  number: 0
   run_exports:
     - {{ pin_subpackage('jsoncpp', max_pin='x.x.x') }}
 
