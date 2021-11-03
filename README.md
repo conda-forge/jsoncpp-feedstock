@@ -178,5 +178,6 @@ Feedstock Maintainers
 
 * [@jakirkham](https://github.com/jakirkham/)
 * [@marcelotrevisani](https://github.com/marcelotrevisani/)
+* [@matthiasdiener](https://github.com/matthiasdiener/)
 * [@stuarteberg](https://github.com/stuarteberg/)
 
