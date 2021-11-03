@@ -33,7 +33,7 @@ test:
 
     # Verify libraries are present.
     - test ! -f "${PREFIX}/lib/libjsoncpp.a"                                           # [unix]
-    - python -c "import ctypes; ctypes.cdll[r'${PREFIX}/lib/libjsoncpp${SHLIB_EXT}']"  # [unix]
+    - python -c "import ctypes; ctypes.cdll[r'${PREFIX}/lib/libjsoncpp${SHLIB_EXT}']"  # [unix and build_platform == target_platform]
     - if not exist %PREFIX%\\Library\\lib\\jsoncpp.lib exit 1                          # [win]
 
 about:
