@@ -3,7 +3,7 @@ About jsoncpp
 
 Home: https://github.com/open-source-parsers/jsoncpp
 
-Package license: Public Domain/MIT
+Package license: LicenseRef-Public-Domain OR MIT
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jsoncpp-feedstock/blob/master/LICENSE.txt)
 
