@@ -38,7 +38,7 @@ test:
 
 about:
   home: https://github.com/open-source-parsers/jsoncpp
-  license: Public Domain/MIT
+  license: LicenseRef-Public-Domain OR MIT
   license_file: LICENSE
   summary: A C++ library for interacting with JSON.
 
