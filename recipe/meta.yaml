@@ -10,7 +10,7 @@ source:
   sha256: 830bf352d822d8558e9d0eb19d640d2e38536b4b6699c30a4488da09d5b1df18
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('jsoncpp', max_pin='x.x.x') }}
 
