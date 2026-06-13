@@ -1,0 +1,17 @@
+diff --git a/include/json/value.h b/include/json/value.h
+index f14a71c..9fb2d17 100644
+--- a/include/json/value.h
++++ b/include/json/value.h
+@@ -39,12 +39,6 @@
+ #endif
+ #endif
+ 
+-#ifndef JSONCPP_HAS_STRING_VIEW
+-#if __cplusplus >= 201703L
+-#define JSONCPP_HAS_STRING_VIEW 1
+-#endif
+-#endif
+-
+ #include <array>
+ #include <exception>
+ #include <map>

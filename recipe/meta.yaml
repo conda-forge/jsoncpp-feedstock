@@ -8,9 +8,12 @@ source:
   fn: jsoncpp-{{ version }}.tar.gz
   url: https://github.com/open-source-parsers/jsoncpp/archive/{{ version }}.tar.gz
   sha256: 830bf352d822d8558e9d0eb19d640d2e38536b4b6699c30a4488da09d5b1df18
+  patches:
+    # match sure string_view abi matches, xref open-source-parsers/jsoncpp#1676
+    - sview.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('jsoncpp', max_pin='x.x.x') }}
 
