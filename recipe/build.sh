@@ -10,6 +10,7 @@ cmake -LAH ${CMAKE_ARGS} -G Ninja \
   -DJSONCPP_WITH_POST_BUILD_UNITTEST=OFF \
   -DCMAKE_CXX_STANDARD=17 \
   -DCMAKE_CXX_STANDARD_REQUIRED=ON \
+  -DJSONCPP_HAS_STRING_VIEW=0 \
   -B build .
 cmake --build build --target install -j${CPU_COUNT}
 
